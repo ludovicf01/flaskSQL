@@ -1,0 +1,19 @@
+services:
+  db-dev:
+    image: postgres:16.9-alpine
+    environment:
+      POSTGRES_DB: testdb
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      SCHEMA: testdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data_dev:/var/lib/postgresql/data
+    networks:
+      - db-dev-net
+volumes:
+  db_data_dev:
+networks:
+  db-dev-net:
+    driver: bridge
